@@ -12,7 +12,7 @@
 
 👉 Get it on the VS Code Marketplace : https://marketplace.visualstudio.com/items?itemName=SureshNettur.ccaia
 
-**Authors**: Suresh Nettur, Shanthi Karpurapu, Unnati Nettur, Likhit Sagar Gajja.
+**Author**: Suresh Nettur.
 
 ## 🎥 DEMO
 
