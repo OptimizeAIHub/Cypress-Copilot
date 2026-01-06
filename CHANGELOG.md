@@ -20,7 +20,6 @@ Backward Compatability.
 Added more models.
 Updated Readme with IEEE paper.
 
-
 ### 1.0.4
 Added logo.
 
@@ -42,10 +41,11 @@ Updated Readme.
 ### 1.2.0
 Added latest GPT 5 models. 
 
+### 1.2.1
+Update theme. 
 
 ### Future Release(s)
 
 Planned improvements might include:
     Added multiple OpenAI models for customized code generation.
     Enhanced the UI for model selection and result display.
-

@@ -51,10 +51,10 @@ async function openAIcallStep(userApiKey, inputText, modelName) {
                         + "Step 3 : do not include explanation"
                         + "your task is to write the code with step definitions for every scenario and the javascript file is {step} ="
                 }
-            ],
-            max_tokens: config_json_1.default['gpt_max_tokens'],
-            temperature: config_json_1.default['gpt_temperature'],
-            top_p: config_json_1.default['gpt_top_p']
+            ]
+            //max_tokens: configData['gpt_max_tokens'],
+            //temperature: configData['gpt_temperature'],
+            //top_p: configData['gpt_top_p']
         });
         // Check if the response has valid content
         const result = (getStepCodeAPIcall.choices
@@ -92,10 +92,10 @@ async function openAIcallPom(userApiKey, inputText, modelName) {
                     "Step 9: Review the generated code thoroughly. Verify each step, and if any step is not followed, rewrite the code accordingly." +
                     "for the given {step} file =" + inputText + "the page object class implementation is {page} = "
             }
-        ],
-        max_tokens: config_json_1.default['gpt_max_tokens'],
-        temperature: config_json_1.default['gpt_temperature'],
-        top_p: config_json_1.default['gpt_top_p']
+        ]
+        //max_tokens: configData['gpt_max_tokens'],
+        //temperature: configData['gpt_temperature'],
+        //: configData['gpt_top_p']
     });
     const result = (getPomCodeAPIcall.choices
         && getPomCodeAPIcall.choices.length > 0
@@ -117,16 +117,21 @@ function isValidBDDFormat(inputText) {
     //const validKeywords = ['Feature:', 'Background:', 'Scenario:', 'Given', 'When', 'Then', 'And', 'But'];
     let expectedKeywords = ['given', 'when', 'then'];
     let keywordIndex = 0; // To track which keyword we are expecting
+    let givenFlag = false;
+    let isValid = true;
     for (const line of lines) {
         // Skip empty lines and lines that don't start with the expected keywords
         if (line === '' || !expectedKeywords.some(keyword => line.toLowerCase().startsWith(keyword))) {
             continue; // Skip this iteration if the line is empty or doesn't start with any of the expected keywords
         }
+        if (line.toLowerCase().startsWith('given')) {
+            givenFlag = true;
+        }
         // Check if the line starts with the expected keyword
         if (line.toLowerCase().startsWith(expectedKeywords[keywordIndex])) {
             keywordIndex++; // Move to the next keyword
             // If all three keywords have been found, stop further checking
-            if (keywordIndex === 3) {
+            if (keywordIndex === 3 || (keywordIndex === 2 && givenFlag)) {
                 break;
             }
         }
@@ -136,7 +141,7 @@ function isValidBDDFormat(inputText) {
         }
     }
     // Check if we found all three keywords in the correct order
-    if (keywordIndex !== 3) {
+    if (!isValid) {
         console.log('The required sequence of "given", "when", "then" was not found.');
         return false;
     }
@@ -220,6 +225,10 @@ function getWebviewContent() {
   <html>
     <head>
         <style>
+			body {
+  				background-color: var(--vscode-editor-background, #0f172a);
+  				color: var(--vscode-editor-foreground, #e5e7eb);
+			}
 			table {
 				font-family: arial, sans-serif;
 				border: 0px solid #dddddd;
@@ -248,9 +257,10 @@ function getWebviewContent() {
 				font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
 				color: white;
 				height: 40px;
-				background-color: #007acc;
+				background-color: #5a67d8;
+  				color: #ffffff;
 				border: none;
-				border-radius: 5px;
+				border-radius: 6px;
 				outline: none;
 	        }
 			.fancy-button:disabled {
@@ -263,7 +273,7 @@ function getWebviewContent() {
             	font-family: 'Segoe UI', serif;
             	font-size: 30px;
             	text-align: center;
-				background: linear-gradient(135deg, #36d1dc, #5b86e5);
+				background: linear-gradient(135deg, #7c83ff, #60a5fa);
 				color: transparent;
 				-webkit-background-clip: text;
 				background-clip: text;
@@ -273,7 +283,7 @@ function getWebviewContent() {
 			h4.fancy {
 				font-family: 'Segoe UI', monospace;
 				font-size: 16px;
-				color: #708090;
+				color: #94a3b8;
 				letter-spacing: 1px;
 				transition: all 0.3s ease-in-out;
 				margin-top: 0px; 
@@ -282,7 +292,7 @@ function getWebviewContent() {
 				font-family: 'Segoe UI', sans-serif;
 				font-size: 16px;
 				font-weight: bold;
-				color: #708090;
+				color: #94a3b8;
 				letter-spacing: 1px;
 				text-align: left;
 				align: left;
@@ -429,23 +439,22 @@ function getWebviewContent() {
 			<tr>
 				<td>
 					<label class="fancy-label">OpenAI Model &nbsp;</label>
-				</td>
-				<td>
 					<select name="LLM" id="gpt" class="fancy-select">
 						<option value="gpt-4o">gpt-4o</option>
 						<option value="gpt-4o-mini">gpt-4o-mini</option>
-						<option value="gpt-4-turbo">gpt-4-turbo</option>
-						<option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+						<option value="gpt-5-mini">gpt-5-mini</option>
+						<option value="gpt-5-nano">gpt-5-nano</option>
+						<option value="gpt-5">gpt-5</option>
 						<option value="o1">o1</option>
 						<option value="o1-preview">o1-preview</option>
 						<option value="o1-mini">o1-mini</option>
+						<option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+						<option value="gpt-4-turbo">gpt-4-turbo</option>
 					</select>
 				</td>
-				<td>&nbsp;
+				<td>
 					<label id="apiKeyLabel" class="fancy-label hidden" >OpenAI API Key &nbsp;</label>
-				</td>
-				<td>&nbsp;
-				    <input id="apiKeyTF" class="rounded-input hidden" type="password">
+					<input id="apiKeyTF" class="rounded-input hidden" type="password">
 				</td>
 			</tr>
 			<tr><td colspan=4>&nbsp;</td></tr>
