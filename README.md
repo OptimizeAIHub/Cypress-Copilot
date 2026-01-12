@@ -126,6 +126,7 @@ Under the following terms:
 - **Ethical Usage**: This tool is designed for ethical development and testing purposes only. Do not use it for any unethical or inappropriate activities.
 - **PII/PHI Handling**: Avoid including personally identifiable information (PII) or protected health information (PHI) in the input spec. The developers are not responsible for any misuse of the extension.
 
+
 ### Support
 
 For issues or questions, visit the GitHub repository or contact us via the Visual Studio Code Marketplace.
