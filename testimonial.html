@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Share Your Experience – Cypress Copilot</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
+    body { font-family: Verdana, Geneva, Tahoma, sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
     h1 { color: #2d333b; }
     label { display: block; margin-top: 16px; font-weight: bold; }
     input, textarea, select { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
@@ -19,16 +19,16 @@
 
   <form action="https://formspree.io/f/xkokonyd" method="POST">
     
-    <label>Your Name</label>
+    <label>Your Name<sup style="color: red;">*</sup></label>
     <input type="text" name="name" placeholder="Jane Doe" required />
 
     <label>Role / Company (optional)</label>
     <input type="text" name="role" placeholder="QA Engineer at Acme Inc." />
 
-    <label>Use Case – How are you using Cypress Copilot?</label>
+    <label>Use Case – How are you using Cypress Copilot?<sup style="color: red;">*</sup></label>
     <textarea name="use_case" rows="3" placeholder="I use it to auto-generate test cases for..." required></textarea>
 
-    <label>Your Testimonial / Quote</label>
+    <label>Your Testimonial / Quote<sup style="color: red;">*</sup></label>
     <textarea name="testimonial" rows="4" placeholder="Cypress Copilot saved me hours every week..." required></textarea>
 
     <label>Rating</label>
