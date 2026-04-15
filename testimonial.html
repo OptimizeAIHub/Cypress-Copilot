@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Share Your Experience – Cypress Copilot</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
+    h1 { color: #2d333b; }
+    label { display: block; margin-top: 16px; font-weight: bold; }
+    input, textarea, select { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    button { margin-top: 20px; padding: 10px 24px; background: #0969da; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0550ae; }
+  </style>
+</head>
+<body>
+  <h1>Share Your Experience 🚀</h1>
+  <p>Using Cypress Copilot? We'd love to hear how it's helping you.</p>
+
+  <form action="https://formspree.io/f/xkokonyd" method="POST">
+    
+    <label>Your Name</label>
+    <input type="text" name="name" placeholder="Jane Doe" required />
+
+    <label>Role / Company (optional)</label>
+    <input type="text" name="role" placeholder="QA Engineer at Acme Inc." />
+
+    <label>Use Case – How are you using Cypress Copilot?</label>
+    <textarea name="use_case" rows="3" placeholder="I use it to auto-generate test cases for..." required></textarea>
+
+    <label>Your Testimonial / Quote</label>
+    <textarea name="testimonial" rows="4" placeholder="Cypress Copilot saved me hours every week..." required></textarea>
+
+    <label>Rating</label>
+    <select name="rating">
+      <option value="5">⭐⭐⭐⭐⭐ – Excellent</option>
+      <option value="4">⭐⭐⭐⭐ – Good</option>
+      <option value="3">⭐⭐⭐ – Average</option>
+      <option value="2">⭐⭐ – Poor</option>
+      <option value="1">⭐ – Bad</option>
+    </select>
+
+    <label>Can we feature your testimonial publicly?</label>
+    <select name="permission">
+      <option value="yes">Yes, you can use my name and quote</option>
+      <option value="anonymous">Yes, but keep me anonymous</option>
+      <option value="no">No, private feedback only</option>
+    </select>
+
+    <button type="submit">Submit Testimonial</button>
+  </form>
+</body>
+</html>
