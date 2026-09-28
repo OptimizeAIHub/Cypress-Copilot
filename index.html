@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cypress Copilot - AI-Powered BDD Test Automation for VS Code</title>
+  <meta name="description" content="Accelerate BDD test automation in Cypress using AI and Few-Shot Chain Prompting. Generate step definitions and POM implementation instantly in VS Code." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cypress: {
+              400: '#5A20A5',
+              500: '#1B1E2E',
+              600: '#121520',
+              accent: '#00BF8F'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased selection:bg-teal-500 selection:text-white">
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-gray-950/80 border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="bg-emerald-500/10 p-2 rounded-lg border border-emerald-500/30 text-emerald-400">
+          <i data-lucide="bot" class="w-6 h-6"></i>
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-gray-200 to-emerald-400 bg-clip-text text-transparent">
+          Cypress Copilot
+        </span>
+      </div>
+      
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+        <a href="#features" class="hover:text-emerald-400 transition">Features</a>
+        <a href="#research" class="hover:text-emerald-400 transition">Research Paper</a>
+        <a href="#how-it-works" class="hover:text-emerald-400 transition">How it Works</a>
+        <a href="#installation" class="hover:text-emerald-400 transition">Installation</a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <a href="https://github.com/OptimizeAIHub/Cypress-Copilot" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded-lg text-sm font-medium border border-gray-700 transition">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+    <!-- Gradient background glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        <span>VS Code Extension • IEEE Published Research</span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+        Accelerate BDD Automation with <span class="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">AI-Generated Cypress Code</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Transform Gherkin BDD scenarios into production-ready Cypress step definitions and Page Object Models instantly using novel Few-Shot Chain Prompting.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#installation" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold px-6 py-3.5 rounded-xl transition shadow-lg shadow-emerald-500/20">
+          <i data-lucide="download" class="w-5 h-5"></i>
+          <span>Install in VS Code</span>
+        </a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10812696" target="_blank" rel="noopener noreferrer" 
+           class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-gray-900 hover:bg-gray-800 text-gray-300 font-medium px-6 py-3.5 rounded-xl border border-gray-800 transition">
+          <i data-lucide="file-text" class="w-5 h-5"></i>
+          <span>Read Research Paper</span>
+        </a>
+      </div>
+
+      <!-- Live Preview Graphic -->
+      <div class="mt-16 rounded-2xl border border-gray-800 bg-gray-900/60 p-4 md:p-6 shadow-2xl backdrop-blur-xl text-left max-w-4xl mx-auto">
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+          <div class="flex items-center space-x-2">
+            <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+            <span class="text-xs text-gray-500 font-mono ml-2">Cypress Copilot - Live Demo</span>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded">GPT-4o Chained</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+          <!-- Input BDD -->
+          <div class="bg-gray-950 p-4 rounded-xl border border-gray-800/80">
+            <div class="text-gray-500 mb-2 font-sans font-medium text-sm flex items-center justify-between">
+              <span>Input (Gherkin Scenario)</span>
+              <i data-lucide="file-code" class="w-4 h-4 text-emerald-400"></i>
+            </div>
+            <pre class="text-emerald-300 overflow-x-auto whitespace-pre-wrap"><code><span class="text-purple-400">Feature:</span> User Authentication
+
+<span class="text-purple-400">Scenario:</span> Successful Login
+  <span class="text-blue-400">Given</span> the user is on the login page
+  <span class="text-blue-400">When</span> the user enters valid credentials
+  <span class="text-blue-400">Then</span> redirected to the dashboard</code></pre>
+          </div>
+
+          <!-- Generated Cypress Code -->
+          <div class="bg-gray-950 p-4 rounded-xl border border-gray-800/80">
+            <div class="text-gray-500 mb-2 font-sans font-medium text-sm flex items-center justify-between">
+              <span>Generated Step Definitions</span>
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+            </div>
+            <pre class="text-gray-300 overflow-x-auto whitespace-pre-wrap"><code><span class="text-purple-400">import</span> { Given, When, Then } <span class="text-purple-400">from</span> <span class="text-green-300">'@badeball/cypress-cucumber-preprocessor'</span>;
+<span class="text-purple-400">import</span> LoginPage <span class="text-purple-400">from</span> <span class="text-green-300">'../pages/LoginPage'</span>;
+
+Given(<span class="text-green-300">'the user is on the login page'</span>, () => {
+  LoginPage.visit();
+});
+
+When(<span class="text-green-300">'the user enters valid credentials'</span>, () => {
+  LoginPage.login(Cypress.env(<span class="text-green-300">'USER'</span>), Cypress.env(<span class="text-green-300">'PASS'</span>));
+});</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metrics / Proof Section -->
+  <section id="research" class="py-12 bg-gray-900/40 border-y border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-6">
+          <div class="text-4xl font-extrabold text-emerald-400 mb-2">Up to 65%</div>
+          <div class="text-gray-300 font-medium">Reduction in Test Automation Time</div>
+          <p class="text-xs text-gray-500 mt-1">Empirically validated in research trials</p>
+        </div>
+        <div class="p-6 border-t md:border-t-0 md:border-l border-gray-800">
+          <div class="text-4xl font-extrabold text-emerald-400 mb-2">8.2 / 10</div>
+          <div class="text-gray-300 font-medium">Code Maintainability Rating</div>
+          <p class="text-xs text-gray-500 mt-1">Evaluated by Senior QA & Dev Engineers</p>
+        </div>
+        <div class="p-6 border-t md:border-t-0 md:border-l border-gray-800">
+          <div class="text-4xl font-extrabold text-emerald-400 mb-2">Few-Shot Chain</div>
+          <div class="text-gray-300 font-medium">Novel Prompt Architecture</div>
+          <p class="text-xs text-gray-500 mt-1">Outperforms standard zero-shot LLM prompts</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-white mb-4">Built for QA Engineers & Developers</h2>
+      <p class="text-gray-400 max-w-xl mx-auto">Streamline your BDD testing workflow without sacrificing code quality or maintainability.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Feature 1 -->
+      <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-emerald-500/40 transition">
+        <div class="bg-emerald-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20">
+          <i data-lucide="layers" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-3">Page Object Model (POM)</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Automatically creates modular POM classes along with step definitions to ensure long-term test suite maintainability.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-emerald-500/40 transition">
+        <div class="bg-emerald-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20">
+          <i data-lucide="cpu" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-3">Few-Shot Chain Prompting</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Utilizes IEEE-published research prompt techniques to guide LLMs through structured step-by-step reasoning for higher accuracy.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-emerald-500/40 transition">
+        <div class="bg-emerald-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20">
+          <i data-lucide="eye" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-3">Real-time Code Preview</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Inspect and review generated test automation code in VS Code before injecting or applying it to your repository.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-16 bg-gray-900/30 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-white mb-4">How Cypress Copilot Works</h2>
+        <p class="text-gray-400">Four simple steps from Gherkin feature file to executable Cypress test.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-800">
+          <div class="text-emerald-400 font-mono text-2xl font-bold mb-3">01</div>
+          <h4 class="text-white font-semibold mb-2">Input Scenario</h4>
+          <p class="text-gray-400 text-sm">Paste your Gherkin BDD scenario into the extension panel in VS Code.</p>
+        </div>
+
+        <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-800">
+          <div class="text-emerald-400 font-mono text-2xl font-bold mb-3">02</div>
+          <h4 class="text-white font-semibold mb-2">Select LLM Model</h4>
+          <p class="text-gray-400 text-sm">Choose your preferred OpenAI model (e.g. GPT-4o) using your secure API key.</p>
+        </div>
+
+        <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-800">
+          <div class="text-emerald-400 font-mono text-2xl font-bold mb-3">03</div>
+          <h4 class="text-white font-semibold mb-2">Chain Prompting</h4>
+          <p class="text-gray-400 text-sm">The extension applies specialized few-shot chain prompts behind the scenes.</p>
+        </div>
+
+        <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-800">
+          <div class="text-emerald-400 font-mono text-2xl font-bold mb-3">04</div>
+          <h4 class="text-white font-semibold mb-2">Generate & Review</h4>
+          <p class="text-gray-400 text-sm">Instantly receive clean step definition files and Page Object Model classes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation / Quickstart -->
+  <section id="installation" class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-b from-gray-900 to-gray-950 border border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl">
+      <h2 class="text-3xl font-bold text-white mb-6 text-center">Get Started in Seconds</h2>
+      
+      <div class="space-y-6">
+        <div class="flex items-start space-x-4">
+          <div class="bg-emerald-500/10 text-emerald-400 p-2 rounded-lg mt-1 border border-emerald-500/20 font-bold">1</div>
+          <div>
+            <h3 class="text-white font-semibold">Install via VS Code Extensions Marketplace</h3>
+            <p class="text-gray-400 text-sm">Search for <code class="text-emerald-400 bg-gray-950 px-2 py-0.5 rounded border border-gray-800">Cypress Copilot</code> inside Visual Studio Code and click Install.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4">
+          <div class="bg-emerald-500/10 text-emerald-400 p-2 rounded-lg mt-1 border border-emerald-500/20 font-bold">2</div>
+          <div>
+            <h3 class="text-white font-semibold">Activate Command Palette</h3>
+            <p class="text-gray-400 text-sm">Press <kbd class="bg-gray-800 text-gray-300 px-2 py-0.5 rounded text-xs">Ctrl+Shift+P</kbd> or <kbd class="bg-gray-800 text-gray-300 px-2 py-0.5 rounded text-xs">Cmd+Shift+P</kbd> and run <code class="text-emerald-400 bg-gray-950 px-2 py-0.5 rounded border border-gray-800">Cypress Copilot</code>.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4">
+          <div class="bg-emerald-500/10 text-emerald-400 p-2 rounded-lg mt-1 border border-emerald-500/20 font-bold">3</div>
+          <div>
+            <h3 class="text-white font-semibold">Add OpenAI API Key</h3>
+            <p class="text-gray-400 text-sm">Input your OpenAI API key in the configuration panel to enable generation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 py-12 text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <p>© OptimizeAIHub. Maintained by Suresh Babu Nettur & Community.</p>
+      </div>
+      <div class="flex items-center space-x-6">
+        <a href="https://github.com/OptimizeAIHub/Cypress-Copilot" class="hover:text-gray-300 transition">GitHub Repo</a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10812696" class="hover:text-gray-300 transition">Research Publication</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
